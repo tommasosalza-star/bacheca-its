@@ -78,5 +78,7 @@ jobs:
           trovati=$(grep -c '<td class="cod">' dist/index.html || true)
           [ "$attesi" -eq "$trovati" ] || { echo "attesi $attesi avvisi, trovati $trovati"; exit 1; }
 
-      # TODO 5 - Carica dist/ come artefatto con nome "sito", cosi' che il
-      #          workflow di release possa scaricarlo invece di ricostruirlo.
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sito
+          path: dist/
