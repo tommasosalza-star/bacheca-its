@@ -34,7 +34,3 @@ test("la pagina generata contiene una riga per ogni avviso", () => {
   const html = render(dati, "test");
   for (const a of dati.avvisi) assert.ok(html.includes(a.titolo), `manca ${a.codice}`);
 });
-
-
-AWS_ACCESS_KEY_ID: AKIAIOSFODNN7EXAMPLE
-AWS_SECRET_ACCESS_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCY40bf3gJ3uVB6Z

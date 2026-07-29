@@ -99,9 +99,7 @@ jobs:
     needs: [build, collaudo]
     runs-on: ubuntu-latest
 
-    # TODO 8 - Aggancia questo job all'environment "produzione", quello che hai
-    #          creato da Settings con i Required reviewers. E' una riga sola ed e'
-    #          cio' che fa fermare il nastro in attesa di un umano.
+    environment: produzione
 
     steps:
       - name: Registra chi ha approvato
