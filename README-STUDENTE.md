@@ -1,5 +1,5 @@
 # Bacheca avvisi ITS — repository di partenza
-
+papo pepo
 Questo repository **funziona già**: si installa, passa i test e costruisce il sito.
 Quello che manca è l'**automazione**. La costruisci tu durante la prova.
 
