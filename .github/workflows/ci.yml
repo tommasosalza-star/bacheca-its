@@ -71,13 +71,12 @@ jobs:
       - name: Costruisci il sito
         run: npm run build
 
-      # TODO 4 - Smoke test sull'ARTEFATTO prodotto (non sul codice sorgente).
-      #          Deve fallire se dist/index.html non esiste o e' vuoto, e deve
-      #          fallire se il numero di righe nella pagina e' diverso dal numero
-      #          di avvisi in data/avvisi.json.
-      #          Ti servono, gia' pronti da copiare:
-      #            attesi=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/avvisi.json','utf8')).avvisi.length)")
-      #            trovati=$(grep -c '<td class="cod">' dist/index.html || true)
+      - name: Smoke test artefatto
+        run: |
+          [ -s dist/index.html ] || { echo "dist/index.html mancante o vuoto"; exit 1; }
+          attesi=$(node -e "console.log(JSON.parse(require('fs').readFileSync('data/avvisi.json','utf8')).avvisi.length)")
+          trovati=$(grep -c '<td class="cod">' dist/index.html || true)
+          [ "$attesi" -eq "$trovati" ] || { echo "attesi $attesi avvisi, trovati $trovati"; exit 1; }
 
       # TODO 5 - Carica dist/ come artefatto con nome "sito", cosi' che il
       #          workflow di release possa scaricarlo invece di ricostruirlo.
