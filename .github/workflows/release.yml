@@ -122,7 +122,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: sito
-          path: sito
+          path: /tmp/sito
 
       - name: Spingi il contenuto sul branch gh-pages
         run: |
@@ -131,7 +131,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout --orphan gh-pages-tmp
           git rm -rf . >/dev/null 2>&1 || true
-          cp -r sito/. .
+          cp -r /tmp/sito/. .
           rm -rf sito
           touch .nojekyll
           git add -A
