@@ -62,12 +62,14 @@ jobs:
         with:
           node-version: '20'
 
-      # TODO 3 - Tre step, in quest'ordine:
-      #          a) installa ESATTAMENTE le dipendenze dichiarate nel lockfile
-      #             (non "npm install": il comando che rispetta il lockfile)
-      #          b) esegui i test
-      #          c) costruisci il sito
-      #          Gli script sono gia' definiti in package.json.
+      - name: Installa dipendenze
+        run: npm ci
+
+      - name: Esegui i test
+        run: npm test
+
+      - name: Costruisci il sito
+        run: npm run build
 
       # TODO 4 - Smoke test sull'ARTEFATTO prodotto (non sul codice sorgente).
       #          Deve fallire se dist/index.html non esiste o e' vuoto, e deve
